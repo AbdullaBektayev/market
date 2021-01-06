@@ -28,7 +28,7 @@ class Company(models.Model):
 class Device(models.Model):
     name = models.CharField('Name',max_length=100)
     description = models.TextField('Description')
-    category = models.ForeignKey(Category,verbose_name='Category',on_delete=models.CASCADE)
+    category = models.ForeignKey(Category,verbose_name='Category',on_delete=models.CASCADE,related_name='device')
     company = models.ForeignKey(Company,verbose_name='company',on_delete=models.CASCADE)
     link = models.CharField('Link to shop',max_length=150)
     url = models.SlugField(max_length=130,unique=True)
@@ -41,12 +41,12 @@ class Device(models.Model):
         verbose_name_plural = 'Devices'
 
 class Price(models.Model):
-    amount = models.IntegerField('Amount',help_text = 'Amount in tenge')
+    price = models.IntegerField('Amount',help_text = 'Amount in tenge')
     date = models.DateField('Date',default=date.today)
-    device = models.ForeignKey(Device,verbose_name='device',on_delete=models.CASCADE)
+    device = models.ForeignKey(Device,verbose_name='device',on_delete=models.CASCADE,related_name='price')
 
     def __str__(self):
-        return self.amount
+        return str(self.amount)
 
     class Meta:
         verbose_name = 'amount'
@@ -58,7 +58,7 @@ class RatingStar(models.Model):
     value = models.SmallIntegerField('Value',default=0)
 
     def __str__(self):
-        return self.value
+        return str(self.value)
 
     class Meta:
         verbose_name = 'Rating star'
@@ -89,8 +89,3 @@ class Review(models.Model):
     class Meta:
         verbose_name = 'Review'
         verbose_name_plural = 'Reviews'
-
-
-
-
-# Create your models here.
