@@ -29,7 +29,7 @@ class Device(models.Model):
     name = models.CharField('Name',max_length=100)
     description = models.TextField('Description')
     category = models.ForeignKey(Category,verbose_name='Category',on_delete=models.CASCADE,related_name='device')
-    company = models.ForeignKey(Company,verbose_name='company',on_delete=models.CASCADE)
+    company = models.ForeignKey(Company,verbose_name='company',on_delete=models.CASCADE,related_name='device')
     link = models.CharField('Link to shop',max_length=150)
     url = models.SlugField(max_length=130,unique=True)
 

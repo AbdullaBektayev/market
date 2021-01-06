@@ -3,8 +3,10 @@ from rest_framework.views import APIView
 
 from .models import Device, Category, Company
 from .serializers import DeviceListSerializer, DeviceDetailSerializer, CategoryListSerializer, CompanyListSerializer, \
-    CategoryDetailSerializer
+    CategoryDetailSerializer, CompanyDeviceDetailSerializer
 
+
+# ------------------------------------------------------------------------
 
 class DeviceListView(APIView):
 
@@ -21,6 +23,8 @@ class DeviceDetailView(APIView):
         serializer = DeviceDetailSerializer(device)
         return Response(serializer.data)
 
+# ------------------------------------------------------------------------
+
 class CategoryListView(APIView):
 
     def get(self,request):
@@ -35,9 +39,18 @@ class CategoryDetailView(APIView):
         serializer = CategoryDetailSerializer(category)
         return Response(serializer.data)
 
+# ------------------------------------------------------------------------
+
 class CompanyListView(APIView):
 
     def get(self, request):
-        categories = Company.objects.all()
-        serializer = CompanyListSerializer(categories, many=True)
+        companies = Company.objects.all()
+        serializer = CompanyListSerializer(companies, many=True)
+        return Response(serializer.data)
+
+class CompanyDeviceDetailView(APIView):
+
+    def get(self,request,pk):
+        company = Company.objects.get(id=pk)
+        serializer = CompanyDeviceDetailSerializer(company)
         return Response(serializer.data)

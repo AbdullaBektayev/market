@@ -53,6 +53,12 @@ class CompanyListSerializer(serializers.ModelSerializer):
         model = Company
         exclude = ('url','id')
 
+class CompanyDeviceDetailSerializer(serializers.ModelSerializer):
+    device = DeviceListSerializer(many=True)
+
+    class Meta:
+        model = Company
+        exclude = ('url','id')
 
 
 
