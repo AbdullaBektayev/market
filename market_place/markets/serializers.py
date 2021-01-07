@@ -33,7 +33,7 @@ class DeviceDetailSerializer(serializers.ModelSerializer):
 class CategoryListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        exclude = ('url','id')
+        exclude = ('url',)
 
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
@@ -41,7 +41,7 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        exclude = ('url','id')
+        exclude = ('url',)
 
 
 # ------------------------------------------------------------------------
@@ -51,14 +51,14 @@ class CompanyListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Company
-        exclude = ('url','id')
+        exclude = ('url',)
 
 class CompanyDeviceDetailSerializer(serializers.ModelSerializer):
     device = DeviceListSerializer(many=True)
 
     class Meta:
         model = Company
-        exclude = ('url','id')
+        exclude = ('url',)
 
 
 
