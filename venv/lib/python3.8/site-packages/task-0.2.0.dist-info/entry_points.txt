@@ -1,0 +1,4 @@
+[console_scripts]
+pytask=task.main:main
+task=task.main:main
+

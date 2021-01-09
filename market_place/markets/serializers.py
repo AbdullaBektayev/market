@@ -12,9 +12,10 @@ class PriceSerializer(serializers.ModelSerializer):
 
 class DeviceListSerializer(serializers.ModelSerializer):
 
+    price = PriceSerializer(many=True)
     class Meta:
         model = Device
-        fields = ('id','name','description')
+        fields = ('id','name','description','price')
 
 class DeviceDetailSerializer(serializers.ModelSerializer):
 

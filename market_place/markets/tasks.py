@@ -1,9 +1,9 @@
 from __future__ import absolute_import, unicode_literals
 from .parsers import mechta,parser_sulpak,parser_technodom,shop
 from celery import shared_task
-from celery.schedules import crontab # scheduler
+# from celery.schedules import crontab # scheduler
 # scheduled task execution
-@shared_task
+@shared_task(name = 'add_new_devices')
 def add_new_devices():
     try:
         mechta.main()
