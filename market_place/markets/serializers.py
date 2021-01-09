@@ -12,15 +12,25 @@ class PriceSerializer(serializers.ModelSerializer):
 
 class DeviceListSerializer(serializers.ModelSerializer):
 
-    price = PriceSerializer(many=True)
+    price = serializers.SerializerMethodField()
+    # getting the last price
+    def get_price(self, obj):
+        try:
+            price = obj.price.latest('date')
+            serializer = PriceSerializer(price)
+            return serializer.data
+        except Exception as ex:
+            return None
+
     class Meta:
         model = Device
-        fields = ('id','name','description','price')
+        fields = ('id','name','price')
 
 class DeviceDetailSerializer(serializers.ModelSerializer):
 
     category = serializers.SlugRelatedField(slug_field='title',read_only=True)
     company = serializers.SlugRelatedField(slug_field='name',read_only=True)
+    # getting all price history
     price = PriceSerializer(many=True)
 
     class Meta:
