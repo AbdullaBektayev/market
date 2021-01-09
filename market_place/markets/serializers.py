@@ -12,8 +12,8 @@ class PriceSerializer(serializers.ModelSerializer):
 
 class DeviceListSerializer(serializers.ModelSerializer):
 
-    price = serializers.SerializerMethodField()
     # getting the last price
+    price = serializers.SerializerMethodField()
     def get_price(self, obj):
         try:
             price = obj.price.latest('date')

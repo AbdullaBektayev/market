@@ -1,13 +1,9 @@
-import requests
 import time
 from selenium import webdriver
 from datetime import date
 import re
-import psycopg2
 from bs4 import BeautifulSoup
-def main():
-    HEADERS = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36','accept':'*/*'}
-
+def main(conn,cursor):
     URLS = [
         'https://www.mechta.kz/section/smartfony/',
         'https://www.mechta.kz/section/noutbuki-7n9',
@@ -15,19 +11,6 @@ def main():
         'https://www.mechta.kz/section/planshety'
     ]
     HOST = 'https://www.mechta.kz'
-
-    conn = psycopg2.connect(
-        user= 'postgres',
-        database = 'market',
-        password = 'root',
-        host = 'localhost',
-        port = '5432'
-    )
-    cursor = conn.cursor()
-
-    def get_html(url,params = None):
-        r = requests.get(url,headers = HEADERS, params=params)
-        return r
 
     def get_content(html,conn,cursor,cat_id):
         soup = BeautifulSoup(html,'html.parser')
@@ -90,7 +73,4 @@ def main():
     driver = webdriver.Chrome()
     parse(URLS,conn,cursor,driver)
     driver.close()
-    if(conn):
-        cursor.close()
-        conn.close()
     print('Mechta is correct')

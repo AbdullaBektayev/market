@@ -1,9 +1,8 @@
 import requests
 from datetime import date
 import re
-import psycopg2
 from bs4 import BeautifulSoup
-def main():
+def main(conn,cursor):
     HEADERS = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36','accept':'*/*'}
 
     # # Sulpak
@@ -14,14 +13,6 @@ def main():
         'https://www.sulpak.kz/f/planshetiy'
            ]
     HOST = 'https://www.sulpak.kz'
-    conn = psycopg2.connect(
-        user= 'postgres',
-        database = 'market',
-        password = 'root',
-        host = 'localhost',
-        port = '5432'
-    )
-    cursor = conn.cursor()
 
     def get_html(url,params = None):
         r = requests.get(url,headers = HEADERS, params=params)
@@ -86,9 +77,6 @@ def main():
                 print('Error')
 
     parse(URLS,conn,cursor)
-    if(conn):
-        cursor.close()
-        conn.close()
     print('Sulpak is correct')
 
 
