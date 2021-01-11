@@ -1,30 +1,28 @@
 from __future__ import absolute_import, unicode_literals
 from .parsers import mechta,parser_sulpak,parser_technodom,shop
 from celery import shared_task
-import psycopg2
-
 @shared_task(name = 'add_new_devices')
 def add_new_devices():
     try:
-        conn = psycopg2.connect(
-            user= 'postgres',       # place for your postgres user_name
-            database = 'market',    # place for your postgres database
-            password = 'root',      # place for your postgres password
-            host = 'localhost',     # place for your postgres host
-            port = '5432'           # place for your postgres port
-        )
+        # conn = psycopg2.connect(
+        #     user= 'postgres',       # place for your postgres user_name
+        #     database = 'market',    # place for your postgres database
+        #     password = 'root',      # place for your postgres password
+        #     host = 'localhost',     # place for your postgres host
+        #     port = '5432'           # place for your postgres port
+        # )
+        #
+        # cursor = conn.cursor()
 
-        cursor = conn.cursor()
 
+        # mechta.main('Mechta')            # parser for mechta
+        parser_sulpak.main('Sulpak')     # parser for sulpak
+        # parser_technodom.main(conn,cursor)  # parser for technodom
+        # shop.main(conn,cursor)              # parser for Белый ветер
 
-        mechta.main(conn,cursor)            # parser for mechta
-        parser_sulpak.main(conn,cursor)     # parser for sulpak
-        parser_technodom.main(conn,cursor)  # parser for technodom
-        shop.main(conn,cursor)              # parser for Белый ветер
-
-        if(conn):
-            cursor.close()
-            conn.close()
+        # if(conn):
+        #     cursor.close()
+        #     conn.close()
 
         return 'Correct'
     except Exception as e:

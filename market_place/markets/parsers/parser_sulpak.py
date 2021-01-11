@@ -1,8 +1,9 @@
 import requests
-from datetime import date
 import re
 from bs4 import BeautifulSoup
-def main(conn,cursor):
+from .createDevices import create
+
+def main(cur_comp):
     HEADERS = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36','accept':'*/*'}
 
     # # Sulpak
@@ -18,12 +19,9 @@ def main(conn,cursor):
         r = requests.get(url,headers = HEADERS, params=params)
         return r
 
-    def get_content(html,conn,cursor,cat_id):
+    def get_content(html,cat_id,cur_comp):
         soup = BeautifulSoup(html,'html.parser')
         items = soup.find_all('div',class_ = 'product-container-right-side')
-
-        category = cat_id
-        company = 1
         for item in items:
             description = item.find('h3',class_ = 'title').get_text(strip=True),
 
@@ -32,51 +30,19 @@ def main(conn,cursor):
             price = int(re.sub('\D', '',item.find('div',class_ = 'price').get_text(strip = True))),
             link = HOST + item.find('a').get('href')
             name = re.sub(r'[А-я]+', '', description[0]).strip()
-            url = str(company) + '-' +name.replace(' ','-')
-            insert_device = """ 
-                                INSERT INTO markets_device (name, description, link,url,category_id,company_id) 
-                                VALUES (%s,%s,%s,%s,%s,%s)
-                                ON CONFLICT (url) DO NOTHING;
-                            """
-            record_to_device = (name, description[0], link,url,category,company)
-            cursor.execute(insert_device, record_to_device)
-            conn.commit()
+            url = str(cur_comp) + '-' +name.replace(' ','-')
 
-            last_id_query = f""" SELECT id FROM markets_device
-                                WHERE markets_device.url = '{url}';
-                            """
-            cursor.execute(last_id_query)
-            last_id = cursor.fetchone()[0]
+            create(name, url, link, price[0], description[0], cat_id, cur_comp)
 
-
-            last_price_query = f""" SELECT price FROM markets_price
-                                    WHERE markets_price.device_id = {last_id}
-                                    ORDER BY id DESC
-                                    LIMIT 1;
-                                """
-            cursor.execute(last_price_query)
-
-            last_price = cursor.fetchone()
-            if last_price:
-                last_price = last_price[0]
-
-            if last_price != price[0]:
-                insert_price = """ INSERT INTO markets_price (price,date,device_id)
-                                    VALUES (%s,%s,%s)
-                                """
-                record_to_price = (price[0],date.today(),last_id)
-                cursor.execute(insert_price, record_to_price)
-                conn.commit()
-
-    def parse(URLS,conn,cursor):
+    def parse(URLS,cur_comp):
         for i,URL in enumerate(URLS):
             html = get_html(URL)
             if html != None and html.status_code == 200:
-                get_content(html.text,conn,cursor,i+1)
+                get_content(html.text,i,cur_comp)
             else:
                 print('Error')
 
-    parse(URLS,conn,cursor)
+    parse(URLS,cur_comp)
     print('Sulpak is correct')
 
 
