@@ -5,7 +5,7 @@ def create(name,url,link,price,description,cat_id,cur_comp):
     categories = ['Smartphone','Notebook','Camera','Tablet']
     category,cat_created = Category.objects.get_or_create(title = categories[cat_id], description = categories[cat_id],url = categories[cat_id])
 
-    company,com_created = Company.objects.get_or_create(name = cur_comp,description = cur_comp)
+    company,com_created = Company.objects.get_or_create(name = cur_comp,description = cur_comp,url = cur_comp)
     device, dev_created = Device.objects.filter(url = url).get_or_create(url=url, name=name, description=description, link=link,
                                                        company=company, category=category)
 
