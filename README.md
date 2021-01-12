@@ -7,35 +7,32 @@ In data we have: name, price, description, which category, by which company prov
   
 In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework'
 
-1) first you need to create database on your local computer then rewrite some line of code in the project 
+1. Clone the repository
 
-  1.1. setting.py 
-  
-    DATABASES = {
-      'default': {
-          'ENGINE': 'django.db.backends.postgresql_psycopg2',
-          'NAME': 'market',      # place for your postgres database
-          'USER': 'postgres',    # place for your postgres user_name
-          'PASSWORD': 'root',    # place for your postgres password
-          'HOST': 'localhost',   # place for your postgres host
-          'PORT': '5432'         # place for your postgres port
-      }
+
+2. Create your own virtual enviroment
+
+  python3 -m venv venv
+  source venv/bin/activate
+
+3. Install your requirements
+
+  pip install -r requirements.txt
+
+4. first you need to create database on your local computer then rewrite some line of code in the project
+
+ DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'market',      # place for your postgres database
+        'USER': 'postgres',    # place for your postgres user_name
+        'PASSWORD': 'root',    # place for your postgres password
+        'HOST': 'localhost',   # place for your postgres host
+        'PORT': '5432'         # place for your postgres port
     }
-    
-    
-   1.2. markets/tasks.py
-   
-        conn = psycopg2.connect(
-            user= 'postgres',       # place for your postgres user_name
-            database = 'market',    # place for your postgres database
-            password = 'root',      # place for your postgres password
-            host = 'localhost',     # place for your postgres host
-            port = '5432'           # place for your postgres port
-        )
-
-        cursor = conn.cursor()
+  }
         
-2) second you need to write this to the 3 terminal window 
+5. second you need to write this to the 3 terminal window 
 
   1 - terminal:
   
@@ -64,11 +61,11 @@ In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework'
 
 Now your django and others ready
 
-3) go to the admin page, with adding the end of main url  '/admin'
+6. go to the admin page, with adding the end of main url  '/admin'
   
-  3.1 select the 'pereodic tasks'
+  6.1 select the 'pereodic tasks'
   
-  3.2 run the task
+  6.2 run the task
   
 Now your parser started the work
 
