@@ -1,7 +1,7 @@
 # market
 For Chokofood
 
-This Django project collect all data about devices from store like 'Technodom' , 'Mechta', 'Sulpak' and 'Белый ветер' in categories 'smartphone', 'tablets', 'cameras', 'notebook'
+This Django project collect all data about devices from store like 'Technodom' , 'Mechta', 'Sulpak' and 'Belyy veter' in categories 'smartphone', 'tablets', 'cameras', 'notebook'
 
 In data we have: name, price, description, which category, by which company provided
   
