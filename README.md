@@ -7,7 +7,13 @@ In data we have: name, price, description, which category, by which company prov
   
 In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework'
 
+
+
+
 Depending from operating system some terminal command may have different syntaxes (In this particular example i use macos)
+
+
+
 
 1. Clone the repository
 
