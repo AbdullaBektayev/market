@@ -9,6 +9,7 @@ In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework'
 
 1. Clone the repository
 
+        https://github.com/AbdullaBektayev/market.git
 
 2. Create your own virtual enviroment
 
@@ -17,7 +18,13 @@ In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework'
 
 3. Install your requirements
 
-        pip install -r requirements.txt
+      3.1  go to the our django project file 
+
+          $ cd markets_place
+
+      3.2 and download the requirements
+
+          $ pip install -r requirements.txt
 
 4. first you need to create database on your local computer then rewrite some line of code in the project
 
@@ -34,29 +41,29 @@ In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework'
         
 5. second you need to write this to the 3 terminal window 
 
-  1 - terminal:
-  
-    1.1  go to the our django project file 
-        $ cd markets_place
-       
-    1.2 start rabbitmq
-        $ /usr/local/sbin/rabbitmq-server
-      
-  2 - terminal:
-  
-    2.1  go to the our django project file 
-        $ cd markets_place
-       
-    2.2 start celery
-        $ celery -A market_place worker -B -l INFO
-        
-  3 - terminal:
-  
-    2.1  go to the our django project file 
-        $ cd markets_place
-       
-    2.2 run the django
-        $ python manage.py runserver
+      1 - terminal:
+
+        1.1  go to the our django project file 
+            $ cd markets_place
+
+        1.2 start rabbitmq
+            $ /usr/local/sbin/rabbitmq-server
+
+      2 - terminal:
+
+        2.1  go to the our django project file 
+            $ cd markets_place
+
+        2.2 start celery
+            $ celery -A market_place worker -B -l INFO
+
+      3 - terminal:
+
+        2.1  go to the our django project file 
+            $ cd markets_place
+
+        2.2 run the django
+            $ python manage.py runserver
         
 
 Now your django and others ready
