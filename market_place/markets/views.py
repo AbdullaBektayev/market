@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 
 from .models import Device, Category, Company
 from .serializers import DeviceListSerializer, DeviceDetailSerializer, CategoryListSerializer, CompanyListSerializer, \
-    CategoryDetailSerializer, CompanyDeviceDetailSerializer
+    CategoryDetailSerializer, CompanyDeviceDetailSerializer,CategoryMinPriceSerializer, CategoryMaxPriceSerializer
 
 
 # ------------------------------------------------------------------------
@@ -37,6 +37,20 @@ class CategoryDetailView(APIView):
     def get(self,request,pk):
         category = Category.objects.get(id = pk)
         serializer = CategoryDetailSerializer(category)
+        return Response(serializer.data)
+
+class CategoryMinPriceView(APIView):
+
+    def get(self,request):
+        category = Category.objects.all()
+        serializer = CategoryMinPriceSerializer(category,many=True)
+        return Response(serializer.data)
+
+class CategoryMaxPriceView(APIView):
+
+    def get(self,request):
+        category = Category.objects.all()
+        serializer = CategoryMaxPriceSerializer(category,many=True)
         return Response(serializer.data)
 
 # ------------------------------------------------------------------------

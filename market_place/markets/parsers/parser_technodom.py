@@ -33,8 +33,6 @@ def main(company):
             html = driver.page_source
             if html != None:
                 get_content(html,i,company)
-            else:
-                print('Error')
 
     driver = webdriver.Chrome()
     parse(URLS,driver,company)

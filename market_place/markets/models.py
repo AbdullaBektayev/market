@@ -1,5 +1,4 @@
 from django.db import models
-from datetime import date
 from django.utils import timezone
 
 class Category(models.Model):
@@ -42,9 +41,11 @@ class Device(models.Model):
         verbose_name_plural = 'Devices'
 
 class Price(models.Model):
-    price = models.IntegerField('Amount',help_text = 'Amount in tenge')
+    price = models.IntegerField('Price',help_text = 'Price in tenge')
     date = models.DateField('Date',default=timezone.now)
     device = models.ForeignKey(Device,verbose_name='device',on_delete=models.CASCADE,related_name='price')
+    company = models.ForeignKey(Company,verbose_name='company',on_delete=models.CASCADE,related_name='price',default=0)
+    category = models.ForeignKey(Category,verbose_name='category',on_delete=models.CASCADE,related_name='price',default=0)
 
     def __str__(self):
         return str(self.price)

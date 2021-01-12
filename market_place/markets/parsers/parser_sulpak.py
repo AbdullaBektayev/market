@@ -39,8 +39,6 @@ def main(company):
             html = get_html(URL)
             if html != None and html.status_code == 200:
                 get_content(html.text,i,company)
-            else:
-                print('Error')
 
     parse(URLS,company)
 

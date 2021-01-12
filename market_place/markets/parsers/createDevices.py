@@ -16,5 +16,5 @@ def create(name,url,link,price,description,cat_id,cur_comp):
         last_price = all_price_obj.order_by('date').last().price
 
     if last_price != price:
-        price = Price(price=price, device=device,date = date.today())
+        price = Price(price=price, device=device,date = date.today(),company = company,category = category)
         price.save()

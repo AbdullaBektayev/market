@@ -7,11 +7,10 @@ def add_new_devices():
         mechta.main('Mechta')            # parser for mechta
         parser_sulpak.main('Sulpak')     # parser for sulpak
         parser_technodom.main('Technodom')  # parser for technodom
-        shop.main('Belyy veter')              # parser for Белый ветер
+        shop.main('Belyy veter')              # parser for belyy veter
 
 
         return 'Correct'
     except Exception as e:
-        print('The scraping job failed. See exception:')
-        print(e)
+        return e
 

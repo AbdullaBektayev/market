@@ -18,9 +18,9 @@ class DeviceListSerializer(serializers.ModelSerializer):
         try:
             price = obj.price.latest('date')
             serializer = PriceSerializer(price)
-            return serializer.data
+            return serializer.data['price']
         except Exception as ex:
-            return None
+            return ex
 
     class Meta:
         model = Device
@@ -54,6 +54,35 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
         model = Category
         exclude = ('url',)
 
+class CategoryMinPriceSerializer(serializers.ModelSerializer):
+    price = serializers.SerializerMethodField()
+    def get_price(self, obj):
+        try:
+            price = obj.price.order_by('price').first()
+            serializer = PriceSerializer(price)
+            return serializer.data['price']
+        except Exception as ex:
+            return ex
+
+    class Meta:
+        model = Category
+        exclude = ('url',)
+
+
+class CategoryMaxPriceSerializer(serializers.ModelSerializer):
+
+    price = serializers.SerializerMethodField()
+    def get_price(self, obj):
+        try:
+            price = obj.price.order_by('price').last()
+            serializer = PriceSerializer(price)
+            return serializer.data['price']
+        except Exception as ex:
+            return ex
+
+    class Meta:
+        model = Category
+        exclude = ('url',)
 
 # ------------------------------------------------------------------------
 
