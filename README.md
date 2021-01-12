@@ -26,7 +26,7 @@ In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework'
 
           $ pip install -r requirements.txt
 
-4. first you need to create database on your local computer then rewrite some line of code in the project
+4. Create database on your local computer then rewrite some line of code in the project
 
         DATABASES = {
           'default': {
@@ -39,7 +39,7 @@ In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework'
           }
         }
         
-5. second you need to write this to the 3 terminal window 
+5. Write this to the at least 3 terminal window 
 
       1 - terminal:
 
@@ -70,9 +70,9 @@ Now your django and others ready
 
 6. go to the admin page, with adding the end of main url  '/admin'
   
-        6.1 select the 'pereodic tasks'
-  
-        6.2 run the task
+      6.1 select the 'pereodic tasks'
+
+      6.2 run the task
   
 Now your parser started the work
 
