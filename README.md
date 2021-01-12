@@ -12,25 +12,25 @@ In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework'
 
 2. Create your own virtual enviroment
 
-  python3 -m venv venv
-  source venv/bin/activate
+        python3 -m venv venv
+        source venv/bin/activate
 
 3. Install your requirements
 
-  pip install -r requirements.txt
+        pip install -r requirements.txt
 
 4. first you need to create database on your local computer then rewrite some line of code in the project
 
- DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'market',      # place for your postgres database
-        'USER': 'postgres',    # place for your postgres user_name
-        'PASSWORD': 'root',    # place for your postgres password
-        'HOST': 'localhost',   # place for your postgres host
-        'PORT': '5432'         # place for your postgres port
-    }
-  }
+        DATABASES = {
+          'default': {
+              'ENGINE': 'django.db.backends.postgresql_psycopg2',
+              'NAME': 'market',      # place for your postgres database
+              'USER': 'postgres',    # place for your postgres user_name
+              'PASSWORD': 'root',    # place for your postgres password
+              'HOST': 'localhost',   # place for your postgres host
+              'PORT': '5432'         # place for your postgres port
+          }
+        }
         
 5. second you need to write this to the 3 terminal window 
 
@@ -63,9 +63,9 @@ Now your django and others ready
 
 6. go to the admin page, with adding the end of main url  '/admin'
   
-  6.1 select the 'pereodic tasks'
+        6.1 select the 'pereodic tasks'
   
-  6.2 run the task
+        6.2 run the task
   
 Now your parser started the work
 
