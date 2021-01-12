@@ -22,7 +22,7 @@ In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework'
 
           $ cd markets_place
 
-      3.2 and download the requirements
+      3.2 and install the requirements
 
           $ pip install -r requirements.txt
 
