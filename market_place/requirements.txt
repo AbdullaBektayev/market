@@ -16,9 +16,7 @@ django-timezone-field==4.1.1
 djangorestframework==3.12.2
 idna==2.10
 kombu==5.0.2
-Pillow==8.1.0
 prompt-toolkit==3.0.10
-psycopg2-binary==2.8.6
 python-crontab==2.5.1
 python-dateutil==2.8.1
 pytz==2020.5
@@ -32,3 +30,5 @@ task==0.2.0
 urllib3==1.26.2
 vine==5.0.0
 wcwidth==0.2.5
+Pillow==8.1.0
+psycopg2-binary==2.8.6
