@@ -1,5 +1,10 @@
 version: '3.7'
 services:
+  redis:
+    image: redis:latest
+    container_name: rd01
+    ports:
+      - '6379:6379'
   web:
     build: ./
     command: python manage.py runserver 0.0.0.0:8000
@@ -9,6 +14,9 @@ services:
       - 8000:8000
     env_file:
       - ./.env.dev
+    depends_on:
+      - redis
+      - db
   db:
     image: postgres:12.0-alpine
     volumes:
@@ -17,6 +25,22 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=market
+  celery:
+    build: .
+    command: celery -A market_place worker -B -l INFO
+    volumes:
+      - ./:/usr/src/app/
+    depends_on:
+      - db
+      - redis
+  celery-beat:
+    build: .
+    command: celery -A market_place beat -l info
+    volumes:
+      - ./:/usr/src/app/
+    depends_on:
+      - db
+      - redis
 
 volumes:
   postgres_data:

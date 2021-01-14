@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="db.sqlite3" uuid="56c507f0-0997-4e55-9aef-f9290887b5cd">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/market_place/db.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="celerybeat-schedule" uuid="0f97e02e-c256-4be9-9e86-ac01c28e5408">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/market_place/celerybeat-schedule</jdbc-url>
+    </data-source>
+  </component>
+</project>

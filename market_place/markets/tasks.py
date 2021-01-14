@@ -4,10 +4,10 @@ from celery import shared_task
 @shared_task(name = 'add_new_devices')
 def add_new_devices():
     try:
-        mechta.main('Mechta')            # parser for mechta
+        # mechta.main('Mechta')            # parser for mechta
         parser_sulpak.main('Sulpak')     # parser for sulpak
-        parser_technodom.main('Technodom')  # parser for technodom
-        shop.main('Belyy veter')              # parser for belyy veter
+        # parser_technodom.main('Technodom')  # parser for technodom
+        # shop.main('Belyy veter')              # parser for belyy veter
 
 
         return 'Correct'

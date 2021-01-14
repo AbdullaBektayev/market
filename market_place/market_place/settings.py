@@ -22,14 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY") # '0!iivfxozstp)k)oxjq5x8%0%rvmfq2e@@#78!gezbtl4&^-v$'
-
+SECRET_KEY = '0!iivfxozstp)k)oxjq5x8%0%rvmfq2e@@#78!gezbtl4&^-v$'
+# SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.environ.get("DEBUG", default=0))
-# DEBUG = True
+# DEBUG = int(os.environ.get("DEBUG", default=1))
+DEBUG = True
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','0.0.0.0', '[::1]']
+# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # Application definition
 
@@ -79,30 +79,36 @@ WSGI_APPLICATION = 'market_place.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
-        "USER": os.environ.get("SQL_USER", "user"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
-        "HOST": os.environ.get("SQL_HOST", "localhost"),
-        "PORT": os.environ.get("SQL_PORT", "5432"),
-    }
-}
-
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'market',      # place for your postgres database
-#         'USER': 'postgres',    # place for your postgres user_name
-#         'PASSWORD': 'root',    # place for your postgres password
-#         'HOST': 'localhost',   # place for your postgres host
-#         'PORT': '5432'         # place for your postgres port
+#     "default": {
+#         "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+#         "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+#         "USER": os.environ.get("SQL_USER", "user"),
+#         "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+#         "HOST": os.environ.get("SQL_HOST", "localhost"),
+#         "PORT": os.environ.get("SQL_PORT", "5432"),
 #     }
 # }
 
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'market',      # place for your postgres database
+        'USER': 'postgres',    # place for your postgres user_name
+        'PASSWORD': 'root',    # place for your postgres password
+        'HOST': 'db',   # place for your postgres host
+        'PORT': '5432'         # place for your postgres port
+    }
+}
+
+# SQL_ENGINE=django.db.backends.postgresql
+# SQL_DATABASE=market
+# SQL_USER=postgres
+# SQL_PASSWORD=root
+# SQL_HOST=db
+# SQL_PORT=5432
+# DATABASE=postgres
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -146,3 +152,9 @@ STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+#
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
