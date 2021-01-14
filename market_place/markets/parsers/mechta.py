@@ -3,7 +3,8 @@ import time
 from selenium import webdriver
 import re
 from bs4 import BeautifulSoup
-def main(company):
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+def main(company,driver):
     URLS = [
         'https://www.mechta.kz/section/smartfony/',
         'https://www.mechta.kz/section/noutbuki-7n9/',
@@ -32,6 +33,7 @@ def main(company):
             if html != None:
                 get_content(html,i,company)
 
-    driver = webdriver.Chrome()
+    # driver = webdriver.Chrome()
+    # driver = webdriver.Remote('http://selenium:4444/wd/hub', DesiredCapabilities.CHROME)
     parse(URLS,driver,company)
-    driver.close()
+    # driver.quit()

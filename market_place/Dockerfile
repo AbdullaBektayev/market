@@ -10,10 +10,10 @@ ENV PYTHONUNBUFFERED 1
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 RUN apk add zlib-dev jpeg-dev gcc musl-dev
+#RUN apk add curl
+#RUN apk add unzip nano bash chromium chromium-chromedriver
 
-#RUN apk update \
-#    && apk install netcat -y
-#RUN apk upgrade -y && apk install postgresql gcc python3-dev musl-dev -y
+
 # install dependencies
 RUN pip install --upgrade pip
 COPY ./requirements.txt .

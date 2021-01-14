@@ -17,6 +17,8 @@ services:
     depends_on:
       - redis
       - db
+    links:
+      - selenium
   db:
     image: postgres:12.0-alpine
     volumes:
@@ -41,6 +43,10 @@ services:
     depends_on:
       - db
       - redis
+  selenium:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - 4444:4444   # Selenium
 
 volumes:
   postgres_data:

@@ -2,11 +2,12 @@ import time
 from selenium import webdriver
 import re
 from bs4 import BeautifulSoup
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 from .createDevices import create
 
 
-def main(company):
+def main(company,driver):
     URLS = [
         'https://www.technodom.kz/smartfony-i-gadzhety/smartfony-i-telefony/smartfony/',
         'https://www.technodom.kz/noutbuki-i-komp-jutery/noutbuki-i-aksessuary/noutbuki',
@@ -34,6 +35,7 @@ def main(company):
             if html != None:
                 get_content(html,i,company)
 
-    driver = webdriver.Chrome()
+    # driver = webdriver.Remote('http://selenium:4444/wd/hub', DesiredCapabilities.CHROME)
+    # driver = webdriver.Chrome()
     parse(URLS,driver,company)
-    driver.close()
+    # driver.quit()

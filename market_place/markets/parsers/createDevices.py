@@ -2,7 +2,6 @@ from ..models import Price,Company,Category,Device
 from datetime import date
 
 def create(name,url,link,price,description,cat_id,cur_comp):
-    # print(name,url,link,price,description,cat_id,cur_comp)
     categories = ['Smartphone','Notebook','Camera','Tablet']
     category,cat_created = Category.objects.get_or_create(title = categories[cat_id], description = categories[cat_id],url = categories[cat_id])
 

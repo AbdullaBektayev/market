@@ -91,6 +91,17 @@ WSGI_APPLICATION = 'market_place.wsgi.application'
 # }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'market',      # place for your postgres database
+#         'USER': 'postgres',    # place for your postgres user_name
+#         'PASSWORD': 'root',    # place for your postgres password
+#         'HOST': 'localhost',   # place for your postgres host
+#         'PORT': '5432'         # place for your postgres port
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -102,14 +113,6 @@ DATABASES = {
     }
 }
 
-# SQL_ENGINE=django.db.backends.postgresql
-# SQL_DATABASE=market
-# SQL_USER=postgres
-# SQL_PASSWORD=root
-# SQL_HOST=db
-# SQL_PORT=5432
-# DATABASE=postgres
-# Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -153,8 +156,17 @@ STATICFILES_DIRS = [STATIC_DIR]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 #
+
 CELERY_BROKER_URL = 'redis://redis:6379'
 CELERY_RESULT_BACKEND = 'redis://redis:6379'
-# CELERY_ACCEPT_CONTENT = ['application/json']
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIME_ZONE: 'UTC'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
