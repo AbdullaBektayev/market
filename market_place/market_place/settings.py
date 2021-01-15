@@ -13,8 +13,6 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-import django_redis
-from celery.schedules import crontab
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 

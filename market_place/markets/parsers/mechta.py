@@ -1,39 +1,46 @@
-from .createDevices import create
+""" Parser for store Mechta """
 import time
-from selenium import webdriver
 import re
 from bs4 import BeautifulSoup
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from .create_devices import create
+
+
 def main(company,driver):
-    URLS = [
+    """ Main function for parsing """
+    urls = [
         'https://www.mechta.kz/section/smartfony/',
         'https://www.mechta.kz/section/noutbuki-7n9/',
         'https://www.mechta.kz/section/zerkalnye-fotoapparaty/',
         'https://www.mechta.kz/section/planshety/'
     ]
-    HOST = 'https://www.mechta.kz'
+    host = 'https://www.mechta.kz'
 
     def get_content(html,cat_id,company):
-        soup = BeautifulSoup(html,'html.parser')
-        items = soup.find_all('div',class_ = 'hoverCard-child bg-white')
+        """ Get info from html """
+        soup = BeautifulSoup(html, 'html.parser')
+        items = soup.find_all('div', class_='hoverCard-child bg-white')
         for item in items:
-            description = item.find('div',class_ = 'q-pt-md q-mt-xs q-px-md text-ts3 text-color2 ellipsis').get_text(strip=True),
-            price = int(re.sub('\D', '',item.find('div',class_ = 'text-ts1').get_text(strip=True))),
-            link = HOST
-            name = re.sub(r'[А-я,\',\"]+', '', description[0]).strip()
-            url = company + '-' + name.replace(' ','-')
+            description = item.find(
+                'div',
+                class_='q-pt-md q-mt-xs q-px-md text-ts3 text-color2 ellipsis'
+            ).get_text(strip=True)
 
-            create(name, url, link, price[0], description[0], cat_id, company)
+            price = int(re.sub('\\D',
+                               '',
+                               item.find('div',class_='text-ts1').get_text(strip=True)))
+            link = host
+            name = re.sub(r'[А-я,\',\"]+', '', description).strip()
+            url = company + '-' + name.replace(' ', '-')
+            device_info = [name, url, link, price, description, cat_id, company]
+            create(device_info)
 
-    def parse(URLS,driver,company):
-        for i,URL in enumerate(URLS):
-            driver.get(URL)
+    def parse(urls, driver, company):
+        """ Parsing through categories"""
+        for i, url in enumerate(urls):
+            driver.get(url)
             time.sleep(10)
             html = driver.page_source
-            if html != None:
-                get_content(html,i,company)
+            if html is not None:
+                get_content(html, i, company)
 
-    # driver = webdriver.Chrome()
-    # driver = webdriver.Remote('http://selenium:4444/wd/hub', DesiredCapabilities.CHROME)
-    parse(URLS,driver,company)
-    # driver.quit()
+    parse(urls, driver, company)

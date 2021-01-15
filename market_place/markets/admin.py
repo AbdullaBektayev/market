@@ -1,7 +1,8 @@
+""" Admin panel """
 from django.contrib import admin
 
 # Register your models here.
-from .models import Category, Device, Company, Price, Review,RatingStar,Rating
+from .models import Category, Device, Company, Price, Review, RatingStar, Rating
 
 admin.site.register(Category)
 admin.site.register(Device)

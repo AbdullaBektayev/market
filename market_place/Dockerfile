@@ -10,9 +10,6 @@ ENV PYTHONUNBUFFERED 1
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 RUN apk add zlib-dev jpeg-dev gcc musl-dev
-#RUN apk add curl
-#RUN apk add unzip nano bash chromium chromium-chromedriver
-
 
 # install dependencies
 RUN pip install --upgrade pip
