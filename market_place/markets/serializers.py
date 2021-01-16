@@ -25,6 +25,7 @@ class DeviceListSerializer(serializers.ModelSerializer):
             return serializer.data['price']
         except Exception as ex:
             return ex
+    # 649
 
     class Meta:
         """ Which field and which model we want to display """

@@ -10,8 +10,8 @@ urlpatterns = [
 
     path('category/', views.CategoryListView.as_view()),
     path('category/<int:pk>/', views.CategoryDetailView.as_view()),
-    path('category/minprice/', views.CategoryMinPriceView.as_view()),
-    path('category/maxprice/', views.CategoryMaxPriceView.as_view()),
+    path('category/minprice/', views.CategoryMinPriceView.as_view(), name='minprice'),
+    path('category/maxprice/', views.CategoryMaxPriceView.as_view(), name='maxprice'),
 
 # ------------------------------------------------------------------------
 
