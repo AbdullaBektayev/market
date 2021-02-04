@@ -5,7 +5,7 @@ This Django project collect all data about devices from store like 'Technodom' ,
 
 In data we have: name, price, description, which category, by which company provided
   
-In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework'
+In this project we use 'Celenium', 'Celery', 'Django', 'Django Rest Framework', 'BigQuery'
 
 
 
